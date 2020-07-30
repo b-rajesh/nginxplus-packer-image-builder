@@ -1,0 +1,52 @@
+{
+    "description": "Create an NGINX Plus R22 on Ubuntu 18.04 LTS",
+    "variables": {
+      "aws_access_key": "",
+      "aws_secret_key": ""
+    },
+    "builders": [
+      {
+        "type": "amazon-ebs",
+        "name": "ngx-plus",
+        "ami_name": "ngx-plus-r22 {{isotime \"2006-01-02\"}}",
+        "instance_type": "t2.micro",
+        "source_ami": "ami-04fcc97b5f6edcd89",
+        "access_key": "{{user `aws_access_key`}}",
+        "secret_key": "{{user `aws_secret_key`}}",
+        "region": "{{user `region`}}",
+        "communicator": "ssh",
+        "ssh_username": "ubuntu",
+        "tags": {
+          "Name": "ngx-plus-r22"
+        }
+      }
+    ],
+    
+    "provisioners": [
+        {
+          "type": "shell-local",
+          "command": "sh get-base-nginx.sh"
+        },
+        {
+          "type": "file",
+          "source": "base-nginx-plus/",
+          "destination": "/tmp",
+          "only": [
+            "ngx-plus"
+          ]
+        },
+        {
+          "type": "shell",
+          "inline": [
+              "sudo sh /tmp/install_nginx.sh"
+          ],
+          "only": [
+              "ngx-plus"
+          ]
+        },
+        {
+          "type": "shell-local",
+          "command": "sh rm-base-nginx.sh"
+        }
+      ]
+    }
