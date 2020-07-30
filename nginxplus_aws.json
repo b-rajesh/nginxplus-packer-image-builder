@@ -2,7 +2,9 @@
     "description": "Create an NGINX Plus R22 on Ubuntu 18.04 LTS",
     "variables": {
       "aws_access_key": "",
-      "aws_secret_key": ""
+      "aws_secret_key": "",
+      "region": "",
+      "source_ami": "ami-04fcc97b5f6edcd89"
     },
     "builders": [
       {
@@ -10,7 +12,7 @@
         "name": "ngx-plus",
         "ami_name": "ngx-plus-r22 {{isotime \"2006-01-02\"}}",
         "instance_type": "t2.micro",
-        "source_ami": "ami-04fcc97b5f6edcd89",
+        "source_ami": "{{user `source_ami`}}",
         "access_key": "{{user `aws_access_key`}}",
         "secret_key": "{{user `aws_secret_key`}}",
         "region": "{{user `region`}}",
