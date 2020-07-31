@@ -48,3 +48,43 @@ $ packer build nginxplus_aws.json
 --> ngx-plus: AMIs were created:
 ap-southeast-2: ami-{id}
 ```
+## To create nginx plus image in azure
+
+### Make sure you have az login completed with azure
+```sh
+$ az login
+```
+### Create resource group using the below az command and get the subscription id
+```sh
+$ az account list-locations --output table # To get your loation name for your region
+$ az group create -n <Your-unique-Resource-Group-Name>  -l <Your-preferred-location> 
+$ az account show --query "{ subscription_id: id }" 
+```
+### Make sure you have entered your subscription_id, location & resource_group_name in the nginxplus_azure.json
+```
+    "location": "<Your-preferred-location>",
+    "subscription_id": "<Your-subscription-id> ",
+    "resource_group_name": "<Your-unique-Resource-Group-Name>",
+```
+### Run Packer command to build image in azure
+```sh
+$ packer build nginxplus_azure.json
+```
+#### You would be asked to open the microsoft web page to enter a unique code to trust packer, it would look like the below in the command line
+```
+==> azure-arm: Microsoft Azure: To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code XXXXXXXXX to authenticate.
+```
+
+### Output of Azure image build - If the build is successful
+```
+Build 'azure-arm' finished.
+
+==> Builds finished. The artifacts of successful builds are:
+--> azure-arm: Azure.ResourceManagement.VMImage:
+
+OSType: Linux
+ManagedImageResourceGroupName: <Your-unique-Resource-Group-Name>
+ManagedImageName: ngx-plus-r22
+ManagedImageId: <You-Managed-ID>
+ManagedImageLocation: <Your-location>
+```
