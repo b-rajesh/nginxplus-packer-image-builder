@@ -4,6 +4,7 @@ This project is to build nginx plus images for GCP, AWS &amp; Azure using packer
 ## *** Pre requisite *** 
 ```
 obtain nginx-repo.crt & nginx-repo.key and place it in the root folder.
+Replace  values in the relevant .json in the variables section with your `client_id`  or `client_secret`  or `project_id` , `region` or other variables. 
 ```
 
 ## Base nginx plus project used 
