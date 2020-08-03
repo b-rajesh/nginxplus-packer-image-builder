@@ -6,6 +6,10 @@ This project is to build nginx plus images for GCP, AWS &amp; Azure using packer
 obtain nginx-repo.crt & nginx-repo.key and place it in the root folder.
 ```
 
+## Base nginx plus project used 
+    You don't have to check-out this project(explicitly) as it would be automatically used while building the nginx plus vm image
+    https://github.com/b-rajesh/diy-nginx-plus-api-gateway
+    
 ## To create nginx plus image in GCP
 
 ### Run the below packer command to create nginx plus image in GCP image repo
