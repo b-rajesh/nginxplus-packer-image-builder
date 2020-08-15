@@ -8,7 +8,7 @@
     "image_family": "ubuntu-1804-lts",
     "consul-packer-module-version": "0.4.0",
     "consul_version": "1.8.3",
-    "project_id": ""
+    "project_id": "Your-GCP-Project-Id"
   },
   "builders": [
     {

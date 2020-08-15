@@ -5,6 +5,13 @@
             "Edge",
             "API Gateway"
         ],
-        "port": 8080
+        "port": 8080,
+        "check": {
+            "id": "Admin-API",
+            "name": "API traffic on port 8080",
+            "tcp": "localhost:8080",
+            "interval": "10s",
+            "timeout": "2s"
+        }
     }
 }
