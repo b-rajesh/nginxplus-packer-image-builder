@@ -1,0 +1,10 @@
+{
+    "service": {
+        "name": "nginx-plus-gateway-r22",
+        "tags": [
+            "Edge",
+            "API Gateway"
+        ],
+        "port": 8080
+    }
+}
