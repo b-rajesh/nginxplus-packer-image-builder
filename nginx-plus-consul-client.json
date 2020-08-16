@@ -3,13 +3,14 @@
         "name": "nginx-plus-gateway-r22",
         "tags": [
             "Edge",
-            "API Gateway"
+            "API Gateway",
+            "NGiNX Plus R22"
         ],
         "port": 8080,
         "check": {
             "id": "Admin-API",
             "name": "API traffic on port 8080",
-            "tcp": "localhost:8080",
+            "http": "https://localhost:8080/api",
             "interval": "10s",
             "timeout": "2s"
         }
